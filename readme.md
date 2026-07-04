@@ -9,10 +9,6 @@
 - [Yêu cầu hệ thống](#-yêu-cầu-hệ-thống)
 - [Cài đặt & Chạy](#-cài-đặt--chạy)
 - [Hướng dẫn sử dụng](#-hướng-dẫn-sử-dụng)
-- [Định dạng file CSV](#-định-dạng-file-csv)
-- [Unit Test & Stress Test](#-unit-test--stress-test)
-- [Tài liệu tham khảo](#-tài-liệu-tham-khảo)
-
 
 ## Tính năng chính
 
