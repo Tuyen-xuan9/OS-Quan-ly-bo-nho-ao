@@ -2,8 +2,6 @@
 
 Ứng dụng  mô phỏng trực quan 3 thuật toán thay thế trang bộ nhớ ảo kinh điển: **FIFO**, **LRU** và **OPT (Optimal)**
 
----
-
 ## Mục lục
 
 - [Tính năng chính](#-tính-năng-chính)
@@ -152,8 +150,6 @@ Kết quả được ghi vào `output/stress_results.csv` và `output/stress_sum
 
 7. **Thông tin nhóm**
    - Bấm nút **👥 Nhóm 5 - Info** ở góc trên bên phải để xem danh sách thành viên.
-
----
 ---
 
 <p align="center">
