@@ -13,7 +13,6 @@
 - [Unit Test & Stress Test](#-unit-test--stress-test)
 - [Tài liệu tham khảo](#-tài-liệu-tham-khảo)
 
----
 
 ## Tính năng chính
 
@@ -27,11 +26,9 @@
 | **Stress Test / Benchmark** | Script độc lập đo thời gian chạy 3 thuật toán với reference string tới 100,000 phần tử. |
 | **Xử lý lỗi đầu vào** | Tự động bỏ qua ký tự không hợp lệ, số âm, kiểm tra `frame_size` trong khoảng 1–20. |
 
----
 
 ## 📁 Cấu trúc thư mục
 
-```
 ├── main.py                        # Entry point 
 │
 ├── algorithms/                    # Lõi thuật toán thay thế trang
@@ -78,7 +75,6 @@
 
 > ⚠️ **Lưu ý:** `main.py` import theo đường dẫn tuyệt đối từ gốc project (`from GUI.display import App`, `from algorithms.fifo import FIFO`, v.v.). Vì vậy cần giữ đúng cấu trúc thư mục và **luôn chạy chương trình từ thư mục gốc**.
 
----
 
 ## Yêu cầu hệ thống
 
@@ -91,7 +87,6 @@
     ```
 - Không cần cài thêm thư viện ngoài.
 
----
 
 ## Cài đặt & Chạy
 
@@ -122,8 +117,6 @@ python unit_tests/stress_runner.py
 
 Kết quả được ghi vào `output/stress_results.csv` và `output/stress_summary.txt`.
 
----
-
 ## Hướng dẫn sử dụng
 
 1. **Nhập dữ liệu**
@@ -150,7 +143,6 @@ Kết quả được ghi vào `output/stress_results.csv` và `output/stress_sum
 
 7. **Thông tin nhóm**
    - Bấm nút **👥 Nhóm 5 - Info** ở góc trên bên phải để xem danh sách thành viên.
----
 
 <p align="center">
   <sub>OS_VME_08 — Group 5 — HCMUTRANS © 2026</sub>
