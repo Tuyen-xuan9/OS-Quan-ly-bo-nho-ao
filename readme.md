@@ -1,58 +1,57 @@
 # Virtual Memory Page Replacement Simulator
 
-Ứng dụng  mô phỏng trực quan 3 thuật toán thay thế trang bộ nhớ ảo kinh điển: **FIFO**, **LRU** và **OPT (Optimal)**
+An application that visually simulates 3 classic virtual memory page replacement algorithms: **FIFO**, **LRU**, and **OPT (Optimal)**.
 
-## Mục lục
+## Table of Contents
 
-- [Tính năng chính](#-tính-năng-chính)
-- [Cấu trúc thư mục](#-cấu-trúc-thư-mục)
-- [Yêu cầu hệ thống](#-yêu-cầu-hệ-thống)
-- [Cài đặt & Chạy](#-cài-đặt--chạy)
-- [Hướng dẫn sử dụng](#-hướng-dẫn-sử-dụng)
+- [Main Features](#-main-features)
+- [Folder Structure](#-folder-structure)
+- [System Requirements](#-system-requirements)
+- [Installation & Run](#-installation--run)
+- [User Guide](#-user-guide)
 
-## Tính năng chính
+## Main Features
 
-| Nhóm | Chi tiết |
+| Category | Details |
 |---|---|
-| **3 thuật toán** | FIFO, LRU, OPT. |
-| **Gantt Chart trực quan** | **animation step-by-step**, điều khiển Play/Pause/Reset/End. |
-| **So sánh thuật toán** | Tab Comparison: Faults, Hits, Hit Rate, Exec Time. |
-| **Nhập liệu linh hoạt** | Load file CSV có sẵn hoặc nhập tay. |
-| **Xuất báo cáo CSV** | 2 chế độ: xuất từng thuật toán riêng lẻ, hoặc xuất đồng thời cả 3. |
-| **Stress Test / Benchmark** | Script độc lập đo thời gian chạy 3 thuật toán với reference string tới 100,000 phần tử. |
-| **Xử lý lỗi đầu vào** | Tự động bỏ qua ký tự không hợp lệ, số âm, kiểm tra `frame_size` trong khoảng 1–20. |
+| **3 Algorithms** | FIFO, LRU, OPT. |
+| **Visual Gantt Chart** | **Step-by-step animation** with Play/Pause/Reset/End controls. |
+| **Algorithm Comparison** | Comparison tab: Faults, Hits, Hit Rate, Exec Time. |
+| **Flexible Input** | Load an existing CSV file or enter data manually. |
+| **CSV Report Export** | 2 modes: export each algorithm individually, or export all 3 at once. |
+| **Stress Test / Benchmark** | Standalone script that measures the runtime of all 3 algorithms with a reference string of up to 100,000 elements. |
+| **Input Error Handling** | Automatically skips invalid characters and negative numbers, and validates `frame_size` within the 1–20 range. |
 
 
-## 📁 Cấu trúc thư mục
+## 📁 Folder Structure
 ```
-├── main.py                        # Entry point 
+├── main.py                        # Entry point
 │
-├── algorithms/                    # Lõi thuật toán thay thế trang
-│   ├── base.py                    #   ABC PageReplacementAlgorithm 
+├── algorithms/                    # Core page replacement algorithms
+│   ├── base.py                    #   ABC PageReplacementAlgorithm
 │   ├── fifo.py                    #   FIFO — deque
 │   ├── lru.py                     #   LRU + LRUClock
-│   ├── opt.py                     #   OPT/Belady 
-│   └── registry.py                #   AlgoRegistry 
+│   ├── opt.py                     #   OPT/Belady
+│   └── registry.py                #   AlgoRegistry
 │
 ├── models/
-│   └── step.py                    # Step — trạng thái 1 bước (frames, fault/hit,
+│   └── step.py                    # Step — state of a single step (frames, fault/hit,
 │                                   #        hit_rate, next_use, to_dict/to_csv_row...)
 │
 ├── utils/
-│   └── file_handler.py            # Đọc input CSV, ghi output CSV, tạo sample/stress inputs
+│   └── file_handler.py            # Reads input CSV, writes output CSV, generates sample/stress inputs
 │
 ├── GUI/
-│   ├── display.py                 # App (tk.Tk) 
+│   ├── display.py                 # App (tk.Tk)
 │   ├── gantt.py                   # GanttTab
-│   ├── compare.py                 # CompareTab 
-│   └── widgets.py                 # Bảng màu (C), font helper (F), widget dùng chung
-│                                   
+│   ├── compare.py                 # CompareTab
+│   └── widgets.py                 # Color palette (C), font helper (F), shared widgets
 │
 ├── unit_tests/
-│   ├── test_algorithms.py         # TestRunner 
-│   └── stress_runner.py           # Benchmark hiệu năng 
+│   ├── test_algorithms.py         # TestRunner
+│   └── stress_runner.py           # Performance benchmark
 │
-├── input/                         # File CSV đầu vào (mẫu + test case)
+├── input/                         # Input CSV files (samples + test cases)
 │   ├── input.csv
 │   ├── basic_testcase.csv
 │   ├── belady_test.csv
@@ -63,79 +62,79 @@
 │   ├── testcase_invalid_characters.csv
 │   └── testcase_invalid_negative_frame.csv
 │
-└── output/                        # File CSV mẫu kết quả sau khi export
+└── output/                        # Sample result CSV files after export
     ├── output_FIFO.csv
     ├── output_LRU.csv
     └── output_OPT.csv
 ```
 
-## Yêu cầu hệ thống
+## System Requirements
 
-- **Python 3.8+** 
-- **Tkinter** — thường có sẵn trong Python chuẩn.
-  - Windows/macOS: có sẵn.
-  - Linux: nếu thiếu, cài thêm:
+- **Python 3.8+**
+- **Tkinter** — usually included with standard Python.
+  - Windows/macOS: included by default.
+  - Linux: if missing, install with:
     ```bash
     sudo apt install python3-tk
     ```
-- Không cần cài thêm thư viện ngoài.
+- No additional external libraries required.
 
 
-## Cài đặt & Chạy
+## Installation & Run
 
 ```bash
-# 1. Clone / giải nén project, di chuyển vào thư mục gốc
+# 1. Clone / extract the project, then move into the root folder
 cd OS_VME_08
 
-# 2. (Tuỳ chọn) Tạo virtual environment
+# 2. (Optional) Create a virtual environment
 python -m venv venv
 source venv/bin/activate      # Linux/macOS
 venv\Scripts\activate         # Windows
 
-# 3. Chạy chương trình
+# 3. Run the program
 python main.py
 ```
 
-### Chạy Unit Test độc lập (không cần GUI)
+### Run Unit Tests Standalone (no GUI required)
 
 ```bash
 python unit_tests/test_algorithms.py
 ```
 
-### Chạy Stress Test / Benchmark
+### Run Stress Test / Benchmark
 
 ```bash
 python unit_tests/stress_runner.py
 ```
 
-Kết quả được ghi vào `output/stress_results.csv` và `output/stress_summary.txt`.
+Results are written to `output/stress_results.csv` and `output/stress_summary.txt`.
 
-## Hướng dẫn sử dụng
+## User Guide
 
-1. **Nhập dữ liệu**
-   - Bấm **📂 Load CSV file** để chọn file `.csv` có sẵn, hoặc
-   - Kéo thanh trượt **FRAME SIZE** (1–10) và gõ trực tiếp reference string (cách nhau bằng dấu phẩy) vào ô **REFERENCE STRING**.
+1. **Enter Data**
+   - Click **📂 Load CSV file** to select an existing `.csv` file, or
+   - Drag the **FRAME SIZE** slider (1–10) and type the reference string directly (comma-separated) into the **REFERENCE STRING** field.
 
-2. **Chạy thuật toán**
-   - Bấm **▶ Run FIFO / LRU / OPT** để chạy riêng lẻ từng thuật toán → tự động chuyển sang tab **Gantt Chart**.
-   - Bấm **⚡ Run ALL & Compare** để chạy cả 3 cùng lúc → tự động chuyển sang tab **Comparison**.
+2. **Run an Algorithm**
+   - Click **▶ Run FIFO / LRU / OPT** to run a single algorithm individually → automatically switches to the **Gantt Chart** tab.
+   - Click **⚡ Run ALL & Compare** to run all 3 at once → automatically switches to the **Comparison** tab.
 
-3. **Xem Gantt Chart**
-   - Di chuột lên từng ô để xem tooltip chi tiết (frame state, fault/hit, next use...).
-   - Dùng thanh điều khiển **⏮ Reset / ▶ Play / ⏸ Pause / ⏭ End** và slider tốc độ để xem animation từng bước thay thế trang.
+3. **View the Gantt Chart**
+   - Hover over each cell to see a detailed tooltip (frame state, fault/hit, next use, etc.).
+   - Use the **⏮ Reset / ▶ Play / ⏸ Pause / ⏭ End** controls and the speed slider to watch the step-by-step page replacement animation.
 
-4. **So sánh (Comparison tab)**
-   - Xem thẻ thống kê, biểu đồ cột (Faults / Hits / Hit Rate) và bảng xếp hạng theo số fault thấp nhất.
+4. **Compare (Comparison tab)**
+   - View statistics cards, bar charts (Faults / Hits / Hit Rate), and a ranking table sorted by lowest fault count.
 
-5. **Xuất kết quả**
-   - **💾 Export FIFO/LRU/OPT CSV** — xuất kết quả của 1 thuật toán đã chạy.
-   - **📦 Xuất 3 CSV** — xuất đồng thời cả 3 thuật toán (yêu cầu đã bấm **Run ALL** trước) vào 1 thư mục do bạn chọn.
+5. **Export Results**
+   - **💾 Export FIFO/LRU/OPT CSV** — exports the results of one algorithm that has already run.
+   - **📦 Export 3 CSVs** — exports all 3 algorithms at once (requires **Run ALL** to have been clicked first) into a folder of your choice.
 
 6. **Unit Tests**
-   - Tab **Unit Tests** → bấm **▶ Run All Unit Tests** để xem toàn bộ test case PASS/FAIL ngay trong ứng dụng.
+   - **Unit Tests** tab → click **▶ Run All Unit Tests** to see all test case PASS/FAIL results directly within the application.
 
-7. **Thông tin nhóm**
-   - Bấm nút **👥 Nhóm 5 - Info** ở góc trên bên phải để xem danh sách thành viên.
+7. **Team Info**
+   - Click the **👥 Group 5 - Info** button in the top-right corner to view the list of team members.
 
 <p align="center">
   <sub>OS_VME_08 — Group 5 — HCMUTRANS © 2026</sub>
